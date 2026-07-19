@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17356b">
+<title>Experimento: Agua de Colores · Sebastián Tupiño</title>
+<meta name="description" content="Proyecto escolar de ciencias — Experimento Agua de Colores con M&M's. Colegio Bilingüe Santa María de la Gracia.">
+
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!-- Librería de íconos (Font Awesome) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+  :root{
+    --navy:#17356b;
+    --navy-2:#1b3f86;
+    --yellow:#ffc72c;
+    --yellow-deep:#f4a900;
+    --cream:#f7f4ec;
+    --green:#6aa84f;
+    --blue:#4a90d9;
+    --ink:#26324a;
+    --mm-red:#e2231a;
+    --mm-yellow:#ffc400;
+    --mm-green:#2ca02c;
+    --mm-blue:#1f77e0;
+    --shadow:0 10px 30px rgba(23,53,107,.14);
+    --shadow-sm:0 4px 14px rgba(23,53,107,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Fredoka',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    background-image:radial-gradient(#e2e9f4 1.6px, transparent 1.6px);
+    background-size:24px 24px;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Baloo 2',system-ui,sans-serif;line-height:1.05}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{width:100%;max-width:760px;margin:0 auto;padding:0 18px}
+
+  /* ---------- HERO ---------- */
+  header.hero{position:relative;z-index:1;padding:32px 0 26px;text-align:center}
+  .banner{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;border:2px dashed var(--blue);color:var(--navy);
+    font-weight:600;font-size:.82rem;padding:8px 16px;border-radius:40px;
+    box-shadow:var(--shadow-sm);margin-bottom:20px;
+  }
+  .banner i{color:var(--yellow-deep)}
+  .school{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:22px}
+  .crest{width:120px;filter:drop-shadow(0 8px 16px rgba(23,53,107,.28))}
+  .school h3{color:var(--navy);font-size:1.3rem;font-weight:700}
+
+  .title-card{
+    position:relative;background:linear-gradient(160deg,var(--navy),var(--navy-2));
+    color:#fff;border-radius:26px;padding:30px 22px 32px;box-shadow:var(--shadow);overflow:hidden;
+  }
+  .title-card::before{content:"";position:absolute;inset:6px;border:2px solid rgba(255,255,255,.16);border-radius:20px}
+  .title-card .bg-atom{position:absolute;font-size:8rem;color:rgba(255,255,255,.06);right:-18px;top:-24px}
+  .eyebrow{font-family:'Fredoka';font-weight:600;letter-spacing:3px;font-size:.72rem;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
+  .title-card h1{font-size:clamp(2.2rem,10vw,3.4rem);text-transform:uppercase;text-shadow:0 3px 0 rgba(0,0,0,.18);position:relative}
+  .title-card h1 .accent{color:var(--yellow);display:block}
+  .flask-float{font-size:2.6rem;color:var(--mm-blue);background:#bfe0ff;width:70px;height:70px;border-radius:50%;display:grid;place-items:center;margin:16px auto 0;box-shadow:0 6px 16px rgba(0,0,0,.25);animation:bob 3s ease-in-out infinite;position:relative}
+
+  /* ---------- section ---------- */
+  section{position:relative;z-index:1;padding:26px 0}
+  .sec-head{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
+  .sec-head h2{
+    font-size:1.5rem;text-transform:uppercase;color:var(--navy);letter-spacing:.5px;
+    background:var(--yellow);padding:8px 24px;border-radius:40px;box-shadow:var(--shadow-sm);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+
+  /* ---------- ficha ---------- */
+  .tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:18px}
+  .tag{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.86rem;color:#fff;padding:9px 16px;border-radius:30px;box-shadow:var(--shadow-sm)}
+  .tag.abp{background:var(--green)}
+  .tag.met{background:var(--yellow-deep);color:var(--navy)}
+  .datos{background:#fff;border-radius:22px;box-shadow:var(--shadow);padding:8px 20px;border:2px solid #eadfce}
+  .dato{display:flex;align-items:center;gap:14px;padding:15px 4px;border-bottom:2px dashed #ece3d2}
+  .dato:last-child{border-bottom:0}
+  .dato .ic{flex:0 0 44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;font-size:1.15rem}
+  .dato .ic.p{background:var(--navy)}
+  .dato .ic.a{background:var(--green)}
+  .dato .ic.g{background:var(--yellow-deep)}
+  .dato .txt small{display:block;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#9a8f7c;font-weight:600}
+  .dato .txt b{font-size:1.06rem;color:var(--navy);font-weight:600}
+
+  /* ---------- imagen-card (materiales) ---------- */
+  .img-card{background:#fff;border-radius:24px;box-shadow:var(--shadow);border:2px solid #eadfce;padding:14px;overflow:hidden}
+  .img-card img{border-radius:14px;margin:0 auto}
+
+  /* ---------- pasos ---------- */
+  .steps{display:flex;flex-direction:column;gap:16px}
+  .step-card{
+    background:#fff;border-radius:22px;box-shadow:var(--shadow-sm);border:2px solid #eadfce;
+    padding:12px;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .step-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .step-card img{border-radius:14px;width:100%}
+
+  /* ---------- cierre ---------- */
+  .callout{
+    background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff;border-radius:24px;
+    padding:26px 22px;box-shadow:var(--shadow);display:flex;gap:16px;align-items:center;
+  }
+  .callout .ic{flex:0 0 54px;height:54px;border-radius:50%;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+  .callout p{font-size:1rem}
+  .callout p b{color:var(--yellow)}
+
+  /* ---------- footer ---------- */
+  footer{text-align:center;padding:34px 0 46px;position:relative;z-index:1}
+  footer .learn{font-family:'Baloo 2';font-weight:800;color:var(--navy);font-size:1.5rem;display:inline-flex;align-items:center;gap:10px}
+  footer .learn i{color:var(--yellow-deep)}
+  footer .atoms{margin-top:12px;font-size:1.3rem;display:flex;gap:16px;justify-content:center;color:var(--navy);opacity:.7}
+  footer .atoms .g{color:var(--green)}
+  footer .atoms .r{color:var(--mm-red)}
+  footer small{display:block;margin-top:16px;color:#b3a892;font-size:.76rem}
+
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @media (prefers-reduced-motion:reduce){.flask-float{animation:none}}
+
+  @media(min-width:640px){
+    .title-card{padding:38px 30px 40px}
+    section{padding:34px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="wrap">
+    <span class="banner"><i class="fa-solid fa-star"></i> Año de la esperanza y el fortalecimiento de la democracia <i class="fa-solid fa-star"></i></span>
+
+    <div class="school">
+      <img class="crest" src="assets/escudo-colegio.png" alt="Escudo del Colegio Bilingüe Santa María de la Gracia">
+      <h3>Colegio Bilingüe<br>Santa María de la Gracia</h3>
+    </div>
+
+    <div class="title-card">
+      <i class="fa-solid fa-atom bg-atom"></i>
+      <p class="eyebrow">Experimento de Ciencias</p>
+      <h1>Agua<span class="accent">de Colores</span></h1>
+      <div class="flask-float"><i class="fa-solid fa-flask"></i></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== FICHA ===================== -->
+<section>
+  <div class="wrap">
+    <div class="tags">
+      <span class="tag abp"><i class="fa-solid fa-diagram-project"></i> Aprendizaje Basado en Proyectos (ABP)</span>
+      <span class="tag met"><i class="fa-solid fa-clipboard-list"></i> Método Instructivo</span>
+    </div>
+    <div class="datos">
+      <div class="dato">
+        <div class="ic p"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <div class="txt"><small>Profesora</small><b>Mary de la Cruz Vilca</b></div>
+      </div>
+      <div class="dato">
+        <div class="ic a"><i class="fa-solid fa-child-reaching"></i></div>
+        <div class="txt"><small>Alumno</small><b>Sebastián Tupiño Cervantes</b></div>
+      </div>
+      <div class="dato">
+        <div class="ic g"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="txt"><small>Grado</small><b>3ro de Primaria</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MATERIALES ===================== -->
+<section>
+  <div class="wrap">
+    <div class="img-card">
+      <img src="assets/materiales.png" alt="Materiales: 1 paquete de M&M's, 1 botella de agua, 1 plato descartable y 1 tijera">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INSTRUCCIONES ===================== -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2><i class="fa-solid fa-list-ol"></i> Instrucciones</h2></div>
+    <div class="steps">
+      <div class="step-card"><img src="assets/paso-1.png" alt="Paso 1: Cortar con la tijera el paquete de M&M's."></div>
+      <div class="step-card"><img src="assets/paso-2.png" alt="Paso 2: Colocar los M&M's alrededor del plato."></div>
+      <div class="step-card"><img src="assets/paso-3.png" alt="Paso 3: Con la botella de agua, echar poco a poco hasta cubrir los M&M's."></div>
+      <div class="step-card"><img src="assets/paso-4.png" alt="Paso 4: Esperar que la capa de los chocolates se derrita y forme agua de colores como un arcoíris."></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CIERRE ===================== -->
+<section>
+  <div class="wrap">
+    <div class="callout">
+      <div class="ic"><i class="fa-solid fa-lightbulb"></i></div>
+      <p>¡Este experimento es <b>fácil y divertido</b> de hacer en familia y, sobre todo, <b>muy seguro</b>!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <p class="learn"><i class="fa-solid fa-microscope"></i> ¡Aprendemos experimentando!</p>
+    <div class="atoms">
+      <i class="fa-solid fa-atom"></i>
+      <i class="fa-solid fa-flask g"></i>
+      <i class="fa-solid fa-atom r"></i>
+    </div>
+    <small>Proyecto escolar · Colegio Bilingüe Santa María de la Gracia · 2026</small>
+  </div>
+</footer>
+
+</body>
+</html>
